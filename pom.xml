@@ -67,23 +67,23 @@
 					<executable>true</executable>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>com.amashchenko.maven.plugin</groupId>
-				<artifactId>gitflow-maven-plugin</artifactId>
-				<version>1.14.0</version>
-				<configuration>
-					<!-- Execute mvn verify before release -->
-					<preReleaseGoals>verify</preReleaseGoals>
-					<preHotfixGoals>verify</preHotfixGoals>
+<!--			<plugin>-->
+<!--				<groupId>com.amashchenko.maven.plugin</groupId>-->
+<!--				<artifactId>gitflow-maven-plugin</artifactId>-->
+<!--				<version>1.14.0</version>-->
+<!--				<configuration>-->
+<!--					&lt;!&ndash; Execute mvn verify before release &ndash;&gt;-->
+<!--					<preReleaseGoals>verify</preReleaseGoals>-->
+<!--					<preHotfixGoals>verify</preHotfixGoals>-->
 
-					<!-- Configure branches -->
-					<gitFlowConfig>
-						<productionBranch>master</productionBranch>
-						<!-- default is develop, but we use development -->
-						<developmentBranch>development</developmentBranch>
-					</gitFlowConfig>
-				</configuration>
-			</plugin>
+<!--					&lt;!&ndash; Configure branches &ndash;&gt;-->
+<!--					<gitFlowConfig>-->
+<!--						<productionBranch>master</productionBranch>-->
+<!--						&lt;!&ndash; default is develop, but we use development &ndash;&gt;-->
+<!--						<developmentBranch>development</developmentBranch>-->
+<!--					</gitFlowConfig>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 
