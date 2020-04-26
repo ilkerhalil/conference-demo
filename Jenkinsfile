@@ -97,15 +97,5 @@ spec:
         }
 
     }
-    post{
-        always{
-            echo "====++++ ++++===="
-        }
-        success{
-            slackSend channel: 'jenkins-build', color: 'good', message: "Build Completed..! Job Name:${env.JOB_NAME} Job Number:${env.BUILD_NUMBER}", teamDomain: 'yolcu360', tokenCredentialId: 'SlackToken'
-        }
-        failure{
-            slackSend channel: 'jenkins-build', color: 'danger', message: "Build Failure. Plese check log: ${env.BUILD_URL}console", teamDomain: 'yolcu360', tokenCredentialId: 'SlackToken'
-        }
-    }
+    
 }
