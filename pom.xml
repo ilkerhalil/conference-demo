@@ -72,8 +72,6 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.8.1</version>
         </dependency>
-
-
 	</dependencies>
 
 	<build>
@@ -86,24 +84,23 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<tasks>
-								<propertyfile file="version.properties" comment="Version information">
-									<entry key="version" value="${jgitver.calculated_version}" />
-									<entry key="current.build.date" value="${build.timestamp}" />
-								</propertyfile>
-							</tasks>
-						</configuration>
-					</execution>
-				</executions>
+				<groupId>org.eclipse.jkube</groupId>
+				<artifactId>openshift-maven-plugin</artifactId>
+				<version>1.0.0-alpha-2</version>
+				<configuration>
+						<images>
+							<image>
+								<name>${env.DOCKER_REGISTRY}/conference-demo:${jgitver.calculated_version}</name>
+								<build>
+									<dockerFile>${project.basedir}/Dockerfile</dockerFile>
+									<contextDir>${project.basedir}</contextDir>
+								</build>
+							</image>
+						</images>
+				</configuration>
 			</plugin>
+
+
 		</plugins>
 	</build>
 
