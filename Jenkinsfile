@@ -9,18 +9,9 @@ apiVersion: v1
 kind: Pod
 metadata:
 spec:
-  securityContext:
-    fsGroup: 999
   containers:
   - name: openjdk
     image: registry.redhat.io/openshift3/jenkins-slave-maven-rhel7
-    securityContext:
-      privileged: true
-    volumeMounts:
-    - name: dockersock
-      mountPath: /var/run/docker.sock
-    - name: docker
-      mountPath: /usr/bin/docker
     command:
     - cat
     tty : true
