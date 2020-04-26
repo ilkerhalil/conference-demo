@@ -1,4 +1,8 @@
 package com.turcom.conferencedemo.models;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,6 +22,7 @@ public class Session {
          inverseJoinColumns = @JoinColumn(name="speaker_id")
 
  )
+ @JsonManagedReference
  private List<Speaker> speakers;
 
  public Session(){}
