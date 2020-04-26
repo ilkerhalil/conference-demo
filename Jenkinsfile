@@ -11,7 +11,7 @@ metadata:
 spec:
   containers:
   - name: openjdk
-    image: registry.redhat.io/openshift3/jenkins-slave-maven-rhel7
+    image: fabric8io/builder-openshift-client
     command:
     - cat
     tty : true
