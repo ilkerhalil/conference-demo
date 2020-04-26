@@ -11,7 +11,7 @@ metadata:
 spec:
   containers:
   - name: openjdk
-    image: fabric8io/builder-openshift-client
+    image: openshift/origin-cli
     command:
     - cat
     tty : true
