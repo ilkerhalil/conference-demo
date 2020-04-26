@@ -11,7 +11,7 @@ metadata:
 spec:
   containers:
   - name: openjdk
-    image: openshift/origin-cli
+    image: openshift/jenkins-slave-maven-centos7
     command:
     - cat
     tty : true
