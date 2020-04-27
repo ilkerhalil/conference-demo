@@ -11,7 +11,7 @@ metadata:
 spec:
   containers:
   - name: openjdk
-    image: openshift/jenkins-agent-maven-35-centos7
+    image: epamedp/jenkins-agent-maven-openshift
     command:
     - cat
     tty : true
