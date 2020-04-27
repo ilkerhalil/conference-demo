@@ -55,13 +55,6 @@ spec:
                 }
             }
         }
-        stage("Build"){
-            steps{
-                    container(name:'openjdk') {
-                    sh 'mvn compile'
-                }
-            }
-        }
         stage("Create Package"){
             steps{
                     container(name:'openjdk') {
@@ -77,7 +70,7 @@ spec:
             }
             steps{
                     container(name:'openjdk') {
-                    sh 'oc login'
+                    sh 'oc login https://api.crc.testing:6443'
                     sh 'mvn oc:build'
                 }
             }
