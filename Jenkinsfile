@@ -11,7 +11,7 @@ metadata:
 spec:
   containers:
   - name: openjdk
-    image: maven:3.6.3-jdk-8
+    image: fabric8/java-jboss-openjdk8-jdk
     command:
     - cat
     tty : true
