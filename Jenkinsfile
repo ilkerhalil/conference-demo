@@ -18,7 +18,8 @@ spec:
     volumeMounts:
     - name: home-volume
       mountPath: /home/jenkins
-    
+    - name: kubeconfig
+      mountPath: "/root/.kube/"    
     env:
     - name: HOME
       value: /home/jenkins
@@ -26,8 +27,11 @@ spec:
       value: -Duser.home=/home/jenkins
     - name: DOCKER_REGISTRY
       value: "default-route-openshift-image-registry.apps-crc.testing"
-    - name: kubeconfig
-      mountPath: "/root/.kube/"
+    - name: openshift-password
+      valueFrom:
+        secretKeyRef:
+          key: openshift-login
+          name: password
   volumes:
   - name: home-volume
     emptyDir: {}
@@ -70,7 +74,7 @@ spec:
             }
             steps{
                     container(name:'openjdk') {
-                    sh 'oc login https://api.crc.testing:6443'
+                    sh 'oc login -u kubeadmin -p ${env.openshift-password} https://api.crc.testing:6443'
                     sh 'mvn oc:build'
                 }
             }
