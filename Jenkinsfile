@@ -23,6 +23,8 @@ spec:
       value: /home/jenkins
     - name: MAVEN_OPTS
       value: -Duser.home=/home/jenkins
+    - name: DOCKER_REGISTRY
+      value: "default-route-openshift-image-registry.apps-crc.testing"
   volumes:
   - name: home-volume
     emptyDir: {}
