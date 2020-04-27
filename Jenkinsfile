@@ -11,10 +11,21 @@ metadata:
 spec:
   containers:
   - name: openjdk
-    image: openshift/jenkins-slave-maven-centos7
+    image: maven:3.6.3-jdk-8
     command:
     - cat
     tty : true
+    volumeMounts:
+    - name: home-volume
+      mountPath: /home/jenkins
+    env:
+    - name: HOME
+      value: /home/jenkins
+    - name: MAVEN_OPTS
+      value: -Duser.home=/home/jenkins
+  volumes:
+  - name: home-volume
+    emptyDir: {}
         """
         }
 
