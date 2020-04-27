@@ -11,7 +11,7 @@ metadata:
 spec:
   containers:
   - name: openjdk
-    image: epamedp/jenkins-agent-maven-openshift
+    image: tnozicka/openshift-maven-builder
     command:
     - cat
     tty : true
