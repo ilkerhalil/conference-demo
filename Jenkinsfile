@@ -30,8 +30,8 @@ spec:
     - name: openshift-password
       valueFrom:
         secretKeyRef:
-          key: openshift-login
-          name: password
+          key: password
+          name: openshift-login
   volumes:
   - name: home-volume
     emptyDir: {}
