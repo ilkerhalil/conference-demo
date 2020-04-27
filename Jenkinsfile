@@ -77,6 +77,7 @@ spec:
             }
             steps{
                     container(name:'openjdk') {
+                    sh 'oc login'
                     sh 'mvn oc:build'
                 }
             }
