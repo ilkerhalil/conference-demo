@@ -18,6 +18,7 @@ spec:
     volumeMounts:
     - name: home-volume
       mountPath: /home/jenkins
+    
     env:
     - name: HOME
       value: /home/jenkins
@@ -25,9 +26,14 @@ spec:
       value: -Duser.home=/home/jenkins
     - name: DOCKER_REGISTRY
       value: "default-route-openshift-image-registry.apps-crc.testing"
+    - name: kubeconfig
+      mountPath: "/root/.kube/"
   volumes:
   - name: home-volume
     emptyDir: {}
+  - name: kubeconfig
+    secret:
+    secretName: kube-config
         """
         }
 
