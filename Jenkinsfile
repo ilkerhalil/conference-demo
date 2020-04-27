@@ -27,7 +27,7 @@ spec:
       value: -Duser.home=/home/jenkins
     - name: DOCKER_REGISTRY
       value: "default-route-openshift-image-registry.apps-crc.testing"
-    - name: openshift-password
+    - name: OPENSHIFT_PASSWORD
       valueFrom:
         secretKeyRef:
           key: password
@@ -74,7 +74,7 @@ spec:
             }
             steps{
                     container(name:'openjdk') {
-                    sh 'oc login -u kubeadmin -p ${env.openshift-password} https://api.crc.testing:6443'
+                    sh 'oc login -u kubeadmin -p ${OPENSHIFT_PASSWORD} https://api.crc.testing:6443'
                     sh 'mvn oc:build'
                 }
             }
