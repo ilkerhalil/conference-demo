@@ -11,7 +11,7 @@ metadata:
 spec:
   containers:
   - name: openjdk
-    image: fabric8/java-jboss-openjdk8-jdk
+    image: openshift/jenkins-agent-maven-35-centos7
     command:
     - cat
     tty : true
