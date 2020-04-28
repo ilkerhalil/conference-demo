@@ -55,14 +55,14 @@ spec:
         stage("Clean"){
             steps{
                     container(name:'openjdk') {
-                    sh 'mvn clean'
+                    sh 'mvn clean -q'
                 }
             }
         }
         stage("Create Package"){
             steps{
                     container(name:'openjdk') {
-                      sh 'mvn package'
+                      sh 'mvn package -q'
                 }
             }
         }
@@ -75,7 +75,7 @@ spec:
             steps{
                     container(name:'openjdk') {
                     sh 'oc login --insecure-skip-tls-verify=true -u kubeadmin -p ${OPENSHIFT_PASSWORD} https://api.crc.testing:6443' 
-                    sh 'mvn oc:build'
+                    sh 'mvn oc:build -q'
                 }
             }
         }
@@ -87,7 +87,7 @@ spec:
               }
                steps{
                       container(name:'openjdk') {
-                      sh 'mvn oc:push'
+                      sh 'mvn oc:push -q'
                         }
                     }
                }
@@ -99,7 +99,7 @@ spec:
             }
             steps{
                     container('openjdk') {
-                    sh 'mvn oc:deploy'
+                    sh 'mvn oc:deploy -q'
                 }
             }
         }
