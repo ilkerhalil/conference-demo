@@ -74,7 +74,7 @@ spec:
             }
             steps{
                     container(name:'openjdk') {
-                    sh 'oc login --insecure-skip-tls-verify=true -u kubeadmin -p ${OPENSHIFT_PASSWORD} https://api.crc.testing:6443' 
+                    sh 'oc login --insecure-skip-tls-verify=true -u kubeadmin -p ${OPENSHIFT_PASSWORD} https://api.crc.testing:6443 --loglevel=10' 
                     sh 'mvn oc:build -q'
                 }
             }
