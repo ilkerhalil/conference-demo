@@ -18,8 +18,6 @@ spec:
     volumeMounts:
     - name: home-volume
       mountPath: /home/jenkins
-    - name: kubeconfig
-      mountPath: "/root/.kube/"    
     env:
     - name: HOME
       value: /home/jenkins
