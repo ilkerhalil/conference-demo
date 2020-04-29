@@ -15,9 +15,6 @@ spec:
     command:
     - cat
     tty : true
-    volumeMounts:
-    - name: home-volume
-      mountPath: /home/jenkins
     env:
     - name: HOME
       value: /home/jenkins
@@ -30,10 +27,7 @@ spec:
         secretKeyRef:
           key: password
           name: openshift-login
-  volumes:
-  - name: home-volume
-    emptyDir: {}
-        """
+          """
         }
 
     }
