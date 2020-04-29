@@ -35,9 +35,6 @@ spec:
   volumes:
   - name: home-volume
     emptyDir: {}
-  - name: kubeconfig
-    secret:
-    secretName: kube-config
         """
         }
 
