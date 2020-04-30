@@ -46,30 +46,19 @@ spec:
         stage("Clean"){
             steps{
                     container(name:'openjdk') {
-                    sh 'mvn clean -q'
+                    sh 'mvn clean oc:resource -q'
                 }
             }
         }
         stage("Create Package"){
             steps{
                     container(name:'openjdk') {
-                      sh 'mvn package -q'
+                      sh 'oc login --insecure-skip-tls-verify=true -u kubeadmin -p ${OPENSHIFT_PASSWORD} https://192.168.1.225:8443 --loglevel=10' 
+                      sh 'mvn package oc:build  -q'
                 }
             }
         }
-        stage("Docker-Build"){
-              when{
-                  expression {
-                    env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'development'
-                }
-            }
-            steps{
-                    container(name:'openjdk') {
-                    sh 'oc login --insecure-skip-tls-verify=true -u kubeadmin -p ${OPENSHIFT_PASSWORD} https://192.168.1.225:8443 --loglevel=10' 
-                    sh 'mvn oc:build -q'
-                }
-            }
-        }
+        
         stage("Docker-Push"){
               when{
                   expression {
@@ -90,7 +79,7 @@ spec:
             }
             steps{
                     container('openjdk') {
-                    sh 'mvn oc:resource oc:deploy -q'
+                    sh 'mvn oc:deploy -q'
                 }
             }
         }
