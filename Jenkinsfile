@@ -22,6 +22,8 @@ spec:
       value: -Duser.home=/home/jenkins
     - name: DOCKER_REGISTRY
       value: "default-route-openshift-image-registry.apps-crc.testing"
+    - name: DOCKER_REGISTRY
+      value: "172.30.124.220:5000"
     - name: OPENSHIFT_PASSWORD
       valueFrom:
         secretKeyRef:
@@ -88,7 +90,7 @@ spec:
             }
             steps{
                     container('openjdk') {
-                    sh 'mvn oc:deploy -q'
+                    sh 'mvn oc:resource oc:deploy -q'
                 }
             }
         }
