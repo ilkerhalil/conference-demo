@@ -12,6 +12,9 @@ spec:
   containers:
   - name: openjdk
     image: tnozicka/openshift-maven-builder
+    volumeMounts:
+    - name: dockerconfig
+      mountPath: "/home/jenkins/.docker/"
     command:
     - cat
     tty : true
@@ -27,6 +30,13 @@ spec:
         secretKeyRef:
           key: password
           name: openshift-login
+  volumes:
+  - name: dockerconfig
+    secret:
+      secretName: registry-dockercfg-fqzb6
+      items:
+      - key: dockercfg
+        path: config.json
           """
         }
 
@@ -52,7 +62,6 @@ spec:
             steps{
                     container(name:'openjdk') {
                       sh 'oc login --insecure-skip-tls-verify=true -u kubeadmin -p ${OPENSHIFT_PASSWORD} https://192.168.1.225:8443 --loglevel=10' 
-                      sh 'docker login -u kubeadmin -p $(oc whoami -t) 172.30.1.1:5000'
                       sh 'mvn package oc:build  -q'
                 }
             }
