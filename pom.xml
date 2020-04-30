@@ -100,10 +100,10 @@
 				</executions>
 				<configuration>
 					<namespace>conference-demo</namespace>
-					<generateRoute>true</generateRoute>
+					<registry>172.30.1.1:5000</registry>
 					<images>
 						<image>
-							<name>${env.DOCKER_REGISTRY}/conference-demo:${jgitver.calculated_version}</name>
+							<name>conference-demo:${jgitver.calculated_version}</name>
 							<build>
 								<dockerFile>${project.basedir}/Dockerfile</dockerFile>
 								<contextDir>${project.basedir}</contextDir>

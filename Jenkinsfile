@@ -22,8 +22,6 @@ spec:
       value: -Duser.home=/home/jenkins
     - name: DOCKER_REGISTRY
       value: "default-route-openshift-image-registry.apps-crc.testing"
-    - name: DOCKER_REGISTRY
-      value: "172.30.124.220:5000"
     - name: OPENSHIFT_PASSWORD
       valueFrom:
         secretKeyRef:
@@ -54,6 +52,7 @@ spec:
             steps{
                     container(name:'openjdk') {
                       sh 'oc login --insecure-skip-tls-verify=true -u kubeadmin -p ${OPENSHIFT_PASSWORD} https://192.168.1.225:8443 --loglevel=10' 
+                      sh 'docker login -u kubeadmin -p $(oc whoami -t) 172.30.1.1:5000'
                       sh 'mvn package oc:build  -q'
                 }
             }
