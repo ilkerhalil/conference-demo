@@ -14,7 +14,7 @@ spec:
     fsGroup: 1000150000
   containers:
   - name: openjdk
-    image: maven
+    image: fabric8/java-jboss-openjdk8-jdk
     command:
     - cat
     tty: true
