@@ -28,33 +28,7 @@ spec:
         secretKeyRef:
           key: password
           name: openshift-login
-  - hostPath:
-      path: /var/run/docker.sock
-      type: ""
-    name: docker-socket
-  - hostPath:
-      path: /var/run/crio/crio.sock
-      type: ""
-    name: crio-socket
-    volumeMounts:
-    - mountPath: /tmp/build
-      name: buildworkdir
-    - mountPath: /var/run/docker.sock
-      name: docker-socket
-    - mountPath: /var/run/crio/crio.sock
-      name: crio-socket
-    - mountPath: /var/run/secrets/openshift.io/push
-      name: builder-dockercfg-zsnsj-push
-      readOnly: true
-    - mountPath: /var/run/secrets/openshift.io/pull
-      name: builder-dockercfg-zsnsj-pull
-      readOnly: true
-    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-      name: builder-token-qjr9n
-      readOnly: true
-  imagePullSecrets:
-  - name: builder-dockercfg-zsnsj
-  - name: dockerhub
+
           """
         }
 
