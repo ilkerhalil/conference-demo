@@ -14,7 +14,7 @@ spec:
     image: tnozicka/openshift-maven-builder
     volumeMounts:
     - name: dockerconfig
-      mountPath: "/home/jenkins/.docker/"
+      mountPath: "/home/jenkins/.docker"
     command:
     - cat
     tty : true
@@ -61,7 +61,7 @@ spec:
         stage("Create Package"){
             steps{
                     container(name:'openjdk') {
-                      sh 'oc login --insecure-skip-tls-verify=true -u kubeadmin -p ${OPENSHIFT_PASSWORD} https://192.168.1.225:8443 --loglevel=10' 
+                      sh 'oc login --insecure-skip-tls-verify=true -u kubeadmin -p ${OPENSHIFT_PASSWORD} https://192.168.1.225:8443' 
                       sh 'mvn package oc:build  -q'
                 }
             }
