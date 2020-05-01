@@ -41,15 +41,7 @@ spec:
 
     }
     stages{
-        stage("Checkout"){
-          steps{
-            checkout([$class: 'GitSCM',
-      branches: scm.branches,
-      doGenerateSubmoduleConfigurations: false,
-      extensions: [[$class: 'CloneOption', noTags: false, reference: '', shallow: false],
-      [$class: 'LocalBranch']], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'jenkins-generated-ssh-key', url: 'git@github.com:ilkerhalil/conference-demo.git']]])
-          }
-      }
+       
         stage("Clean"){
             steps{
                     container(name:'openjdk') {
