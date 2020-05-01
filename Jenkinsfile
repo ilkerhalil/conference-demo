@@ -14,7 +14,7 @@ spec:
     fsGroup: 1000150000
   containers:
   - name: openjdk
-    image: openshift/origin-docker-builder:v3.11
+    image: maven
     command:
     - cat
     tty: true
