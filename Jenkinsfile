@@ -12,10 +12,6 @@ spec:
   containers:
   - name: openjdk
     image: tnozicka/openshift-maven-builder
-    volumeMounts:
-    - name: dockerconfig
-      mountPath: "/home/jenkins/.docker"
-    command:
     - cat
     tty : true
     env:
@@ -30,13 +26,7 @@ spec:
         secretKeyRef:
           key: password
           name: openshift-login
-  volumes:
-  - name: dockerconfig
-    secret:
-      secretName: registry-dockercfg-fqzb6
-      items:
-      - key: dockercfg
-        path: config.json
+
           """
         }
 
