@@ -102,7 +102,7 @@
 					<namespace>conference-demo</namespace>
 					<images>
 						<image>
-							<name>nexus-conference-demo-dev.192.168.1.255.xip.io/repository/docker/conference-demo:${jgitver.calculated_version}</name>
+							<name>conference-demo:${jgitver.calculated_version}</name>
 							<build>
 								<dockerFile>${project.basedir}/Dockerfile</dockerFile>
 								<contextDir>${project.basedir}</contextDir>
