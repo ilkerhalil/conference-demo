@@ -9,17 +9,11 @@ apiVersion: v1
 kind: Pod
 metadata:
 spec:
+  securityContext:
+    fsGroup: 1000150000
   containers:
   - name: openjdk
     image: tnozicka/openshift-maven-builder
-    securityContext:
-      capabilities:
-        drop:
-        - KILL
-        - MKNOD
-        - SETGID
-        - SETUID
-      runAsUser: 1000150000
     command:
     - cat
     tty : true
