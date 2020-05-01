@@ -12,6 +12,7 @@ spec:
   containers:
   - name: openjdk
     image: tnozicka/openshift-maven-builder
+    command:
     - cat
     tty : true
     env:
