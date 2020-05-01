@@ -8,6 +8,7 @@ pipeline{
 apiVersion: v1
 kind: Pod
 metadata:
+  namespace: conference-demo-dev
 spec:
   securityContext:
     fsGroup: 1000150000
