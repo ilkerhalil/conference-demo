@@ -99,7 +99,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<namespace>conference-demo</namespace>
+					<namespace>conference-demo-dev</namespace>
 					<images>
 						<image>
 							<name>conference-demo:${jgitver.calculated_version}</name>

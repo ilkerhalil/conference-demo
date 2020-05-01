@@ -12,6 +12,14 @@ spec:
   containers:
   - name: openjdk
     image: tnozicka/openshift-maven-builder
+    securityContext:
+      capabilities:
+        drop:
+        - KILL
+        - MKNOD
+        - SETGID
+        - SETUID
+      runAsUser: 1000150000
     command:
     - cat
     tty : true
@@ -52,7 +60,7 @@ spec:
         stage("Create Package"){
             steps{
                     container(name:'openjdk') {
-                      //sh 'oc login --insecure-skip-tls-verify=true -u kubeadmin -p ${OPENSHIFT_PASSWORD} https://192.168.1.225:8443' 
+                      sh 'oc login --insecure-skip-tls-verify=true -u kubeadmin -p ${OPENSHIFT_PASSWORD} https://192.168.1.225:8443' 
                       sh 'mvn package oc:build  -q'
                 }
             }
