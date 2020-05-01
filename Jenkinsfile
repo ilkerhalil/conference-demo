@@ -54,6 +54,7 @@ spec:
             steps{
                     container(name:'openjdk') {
                       sh 'oc login --insecure-skip-tls-verify=true -u kubeadmin -p ${OPENSHIFT_PASSWORD} https://192.168.1.225:8443' 
+                      sh 'oc project conference-demo-dev'
                       sh 'mvn package oc:build  -q'
                 }
             }
