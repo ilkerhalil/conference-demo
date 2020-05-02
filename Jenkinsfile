@@ -39,8 +39,8 @@ spec:
   - name: kubeconfig
     secret:
       secretName: kube-config
-   - name: cache-volume
-      emptyDir: {}
+  - name: cache-volume
+    emptyDir: {}
           """
         }
 
