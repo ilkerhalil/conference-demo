@@ -99,10 +99,18 @@
 					</execution>
 				</executions>
 				<configuration>
+					<resources>
+						<secrets>
+							<secret>
+								<dockerServerId>nexus-docker-registry-nexus3.192.168.1.255.xip.io</dockerServerId>
+								<name>nexus</name>
+							</secret>
+						</secrets>
+					</resources>
 					<namespace>conference-demo-dev</namespace>
 					<images>
 						<image>
-							<name>conference-demo:${jgitver.calculated_version}</name>
+							<name>vf/conference-demo:${jgitver.calculated_version}</name>
 							<build>
 								<dockerFile>${project.basedir}/Dockerfile</dockerFile>
 								<contextDir>${project.basedir}</contextDir>
