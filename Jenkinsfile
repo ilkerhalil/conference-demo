@@ -11,10 +11,10 @@ metadata:
   namespace: conference-demo-dev
 spec:
   securityContext:
-    fsGroup: 1000150000
+    fsGroup: 0
   containers:
   - name: openjdk
-    image: fabric8/java-jboss-openjdk8-jdk
+    image: nexus-docker-registry-nexus3.192.168.1.255.xip.io/vf/maven-oc-build
     command:
     - cat
     tty: true
@@ -28,6 +28,8 @@ spec:
         secretKeyRef:
           key: password
           name: openshift-login
+  imagePullSecrets:
+  - name: nexus
 
           """
         }
