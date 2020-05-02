@@ -8,7 +8,7 @@ pipeline{
 apiVersion: v1
 kind: Pod
 metadata:
-  namespace: conference-demo-dev
+  namespace: jenkins
 spec:
   securityContext:
     fsGroup: 0
@@ -28,9 +28,16 @@ spec:
         secretKeyRef:
           key: password
           name: openshift-login
+    volumeMounts:
+    - name: kubeconfig
+      mountPath: "/home/jenkins/.kube"
+      readOnly: true
   imagePullSecrets:
   - name: nexus
-
+  volumes:
+  - name: kubeconfig
+    secret:
+      secretName: kube-config
           """
         }
 
