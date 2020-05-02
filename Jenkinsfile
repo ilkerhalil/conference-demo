@@ -31,12 +31,16 @@ spec:
     volumeMounts:
     - name: kubeconfig
       mountPath: "/home/jenkins/.kube"
+    - mountPath: /home/jenkins
+      name: cache-volume
   imagePullSecrets:
   - name: nexus
   volumes:
   - name: kubeconfig
     secret:
       secretName: kube-config
+   - name: cache-volume
+      emptyDir: {}
           """
         }
 
