@@ -1,4 +1,4 @@
-FROM openjdk:8-alpine
+FROM fabric8/s2i-java
 EXPOSE 5000
 RUN mkdir app
 COPY maven/*.jar /app/conference-demo.jar
