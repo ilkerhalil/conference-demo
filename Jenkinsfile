@@ -61,8 +61,9 @@ spec:
         stage("Create Package"){
             steps{
                     container(name:'openjdk') {
-                      sh '/home/jenkins/.kube/config /home/jenkins/config'
-                      sh 'oc login --insecure-skip-tls-verify=true -u system:openshift-master --config=/home/jenkins/config https://192.168.1.225:8443' 
+                      sh 'export kube_config=value=$(</home/jenkins/.kube/config)'
+                      sh 'echo $kube_config >> /tmp/config'
+                      sh 'oc login --insecure-skip-tls-verify=true -u system:openshift-master --config=/tmp/config https://192.168.1.225:8443' 
                       sh 'oc project conference-demo-dev'
                       sh 'mvn package oc:build  -q'
                 }
