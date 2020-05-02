@@ -31,7 +31,6 @@ spec:
     volumeMounts:
     - name: kubeconfig
       mountPath: "/home/jenkins/.kube"
-      readOnly: true
   imagePullSecrets:
   - name: nexus
   volumes:
