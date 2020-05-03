@@ -88,16 +88,16 @@
 				<groupId>org.eclipse.jkube</groupId>
 				<artifactId>openshift-maven-plugin</artifactId>
 				<version>1.0.0-alpha-2</version>
-				<executions>
+				<!-- <executions>
 					<execution>
 						<goals>
 							<goal>resource</goal>
-							<goal>build</goal>
-							<goal>deploy</goal>
+							
+							<goal>apply</goal>
 
 						</goals>
 					</execution>
-				</executions>
+				</executions> -->
 				<configuration>
 					<generateRoute>true</generateRoute>
 					<namespace>conference-demo-dev</namespace>
