@@ -58,7 +58,7 @@ spec:
         stage("Clean"){
             steps{
                     container(name:'openjdk') {
-                    sh 'mvn clean oc:resource -Popenshift -q'
+                    sh 'mvn clean'
                 }
             }
         }

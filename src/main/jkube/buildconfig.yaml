@@ -5,9 +5,9 @@ spec:
       name: nexus-docker-registry-nexus3.192.168.1.255.xip.io/vf/${project.artifactId}:${jgitver.calculated_version}
     pushSecret:
       name: nexus  
-    strategy:
-      sourceStrategy:
-        from:
-          kind: DockerImage
-          name: docker.io/fabric8/s2i-java
-      type: Docker
+  strategy:
+    sourceStrategy:
+      from:
+        kind: DockerImage
+        name: docker.io/fabric8/s2i-java
+    type: Docker
