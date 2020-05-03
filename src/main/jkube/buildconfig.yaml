@@ -1,3 +1,4 @@
+apiVersion: build.openshift.io/v1
 spec: 
   output:
     to:
