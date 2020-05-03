@@ -67,7 +67,7 @@ spec:
                     container(name:'openjdk') {
                       sh 'cp /home/jenkins/.kube/config /root/'
                       sh 'oc login --insecure-skip-tls-verify=true -u system:openshift-master --config=/root/config https://192.168.1.225:8443 -n conference-demo-dev' 
-                      sh 'mvn package  -q'
+                      sh 'mvn package -q'
                       sh 'mvn oc:resource oc:apply'
                 }
             }
