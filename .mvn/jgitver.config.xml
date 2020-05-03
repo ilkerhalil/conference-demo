@@ -3,14 +3,12 @@
                xsi:schemaLocation="http://jgitver.github.io/maven/configuration/1.1.0 https://jgitver.github.io/maven/configuration/jgitver-configuration-v1_1_0.xsd">
     <mavenLike>false</mavenLike>
     <autoIncrementPatch>true</autoIncrementPatch>
-    <policy>MAX</policy>
-    <useDefaultBranchingPolicy>true</useDefaultBranchingPolicy>
-    <branchPolicies>
+    <!-- <branchPolicies>
         <branchPolicy>
             <pattern>(master)</pattern>
             <transformations>
                 <transformation>IGNORE</transformation>
             </transformations>
         </branchPolicy>
-    </branchPolicies>
+    </branchPolicies> -->
 </configuration>
