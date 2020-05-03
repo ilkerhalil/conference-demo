@@ -2,21 +2,28 @@ spec:
  template:
    spec:
      containers:
-       - livenessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /actuator/health
-            port: 5000
-            scheme: HTTP
-          initialDelaySeconds: 180
-          successThreshold: 1
-       - readinessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /actuator/health
-            port: 5000
-            scheme: HTTP
-          initialDelaySeconds: 10
-          successThreshold: 1
+     - env:
+       - name: KUBERNETES_NAMESPACE
+         valueFrom:
+           fieldRef:
+             fieldPath: metadata.namespace
+       image: nexus-docker-registry-nexus3.192.168.1.255.xip.io/vf/${project.artifactId}:${jgitver.calculated_version}
+       name: vf-conference-demo
+       livenessProbe:
+         failureThreshold: 3
+         httpGet:
+          path: /actuator/health
+          port: 5000
+          scheme: HTTP
+         initialDelaySeconds: 180
+         successThreshold: 1
+       readinessProbe:
+         failureThreshold: 3
+         httpGet:
+          path: /actuator/health
+          port: 5000
+          scheme: HTTP
+         initialDelaySeconds: 10
+         successThreshold: 1
      imagePullSecrets:
      - name: nexus

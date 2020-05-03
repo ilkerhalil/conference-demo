@@ -1,6 +1,6 @@
-FROM docker.io/fabric8/s2i-java
+FROM docker.io/maven
 EXPOSE 5000
 RUN mkdir app
-COPY maven/*.jar /app/conference-demo.jar
+COPY target/*.jar /app/conference-demo.jar
 WORKDIR /app
 ENTRYPOINT [ "java","-jar","conference-demo.jar"]

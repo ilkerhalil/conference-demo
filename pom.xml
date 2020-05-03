@@ -115,22 +115,6 @@
 						</image>
 					</images>
 
-
-					<enricher>
-						<config>
-							<jkube-controller>
-								<name>conference-demo</name>
-								<pullPolicy>Always</pullPolicy>
-								<imagePullSecrets>nexus</imagePullSecrets>
-							</jkube-controller>
-							<jkube-service>
-								<name>conference-demo-service</name>
-								<port>5000:5000</port>
-							</jkube-service>
-
-						</config>
-					</enricher>
-
 				</configuration>
 			</plugin>
 

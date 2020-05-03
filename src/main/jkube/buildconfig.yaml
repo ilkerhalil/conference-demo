@@ -1,5 +1,8 @@
+---
 apiVersion: build.openshift.io/v1
-spec: 
+spec:
+  source: 
+    type: "Binary" 
   output:
     to:
       kind: DockerImage
@@ -9,4 +12,6 @@ spec:
   strategy:
     dockerStrategy:
       dockerfilePath: ./Dockerfile
-    
+    type: Docker
+  triggers:
+    - type: ConfigChange
