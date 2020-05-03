@@ -108,9 +108,6 @@
 							<build>
 								<dockerFile>${project.basedir}/Dockerfile</dockerFile>
 								<contextDir>${project.basedir}</contextDir>
-								<fromExt>
-									<kind>DockerImage</kind>
-								</fromExt>
 								<ports>
 									<port>5000</port>
 								</ports>
