@@ -101,12 +101,16 @@
 				<configuration>
 					<generateRoute>true</generateRoute>
 					<namespace>conference-demo-dev</namespace>
+					
 					<images>
 						<image>
-							<name>nexus-docker-registry-nexus3.192.168.1.255.xip.io/v2/conference-demo:${jgitver.calculated_version}</name>
+							<name>nexus-docker-registry-nexus3.192.168.1.255.xip.io/vf/conference-demo:${jgitver.calculated_version}</name>
 							<build>
 								<dockerFile>${project.basedir}/Dockerfile</dockerFile>
 								<contextDir>${project.basedir}</contextDir>
+								<fromExt>
+									<kind>DockerImage</kind>
+								</fromExt>
 								<ports>
 									<port>5000</port>
 								</ports>

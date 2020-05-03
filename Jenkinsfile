@@ -58,7 +58,7 @@ spec:
         stage("Clean"){
             steps{
                     container(name:'openjdk') {
-                    sh 'mvn clean oc:resource -q'
+                    sh 'mvn clean oc:resource -Popenshift -q'
                 }
             }
         }
@@ -67,7 +67,7 @@ spec:
                     container(name:'openjdk') {
                       sh 'cp /home/jenkins/.kube/config /root/'
                       sh 'oc login --insecure-skip-tls-verify=true -u system:openshift-master --config=/root/config https://192.168.1.225:8443 -n conference-demo-dev' 
-                      sh 'mvn package oc:build  -q'
+                      sh 'mvn package oc:build  -Popenshift -q'
                 }
             }
         }
@@ -80,7 +80,7 @@ spec:
               }
                steps{
                       container(name:'openjdk') {
-                      sh 'mvn oc:push -q'
+                      sh 'mvn oc:push -Popenshift -q'
                         }
                     }
                }
