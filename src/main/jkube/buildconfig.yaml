@@ -7,7 +7,7 @@ spec:
     pushSecret:
       name: nexus  
   strategy:
-    sourceStrategy:
+    dockerStrategy:
       from:
         kind: DockerImage
         name: docker.io/fabric8/s2i-java
