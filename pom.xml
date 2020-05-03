@@ -99,18 +99,11 @@
 					</execution>
 				</executions>
 				<configuration>
-					<resources>
-						<secrets>
-							<secret>
-								<dockerServerId>nexus-docker-registry-nexus3.192.168.1.255.xip.io</dockerServerId>
-								<name>nexus</name>
-							</secret>
-						</secrets>
-					</resources>
+					<generateRoute>true</generateRoute>
 					<namespace>conference-demo-dev</namespace>
 					<images>
 						<image>
-							<name>vf/conference-demo:${jgitver.calculated_version}</name>
+							<name>nexus-docker-registry-nexus3.192.168.1.255.xip.io/v2/conference-demo:${jgitver.calculated_version}</name>
 							<build>
 								<dockerFile>${project.basedir}/Dockerfile</dockerFile>
 								<contextDir>${project.basedir}</contextDir>
@@ -120,29 +113,20 @@
 							</build>
 						</image>
 					</images>
-					<generator>
-						<includes>
-							<include>spring-boot</include>
-						</includes>
-						<config>
-							<spring-boot>
-								<color>always</color>
-							</spring-boot>
-						</config>
-					</generator>
+
+
 					<enricher>
-						<excludes>
-							<exclude>jkube-expose</exclude>
-						</excludes>
 						<config>
 							<jkube-controller>
-								<!-- why is this not overriding the name in fragment? -->
-								<name>conference-demo-service</name>
+								<name>conference-demo</name>
 								<pullPolicy>Always</pullPolicy>
+								<imagePullSecrets>nexus</imagePullSecrets>
 							</jkube-controller>
 							<jkube-service>
-								<type>NodePort</type>
+								<name>conference-demo-service</name>
+								<port>5000:5000</port>
 							</jkube-service>
+
 						</config>
 					</enricher>
 

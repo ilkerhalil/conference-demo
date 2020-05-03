@@ -1,0 +1,22 @@
+spec:
+ template:
+   spec:
+     containers:
+       - livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /actuator/health
+            port: 5000
+            scheme: HTTP
+          initialDelaySeconds: 180
+          successThreshold: 1
+       - readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /actuator/health
+            port: 5000
+            scheme: HTTP
+          initialDelaySeconds: 10
+          successThreshold: 1
+     imagePullSecrets:
+     - name: nexus

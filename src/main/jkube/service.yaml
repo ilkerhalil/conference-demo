@@ -1,0 +1,9 @@
+spec:
+ template:
+   spec:
+    - ports:
+      - name: http
+        nodePort: 30892
+        port: 5000
+        protocol: TCP
+        targetPort: http
