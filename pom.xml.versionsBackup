@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.turcom</groupId>
 	<artifactId>conference-demo</artifactId>
-	<version>1.2.4-beta</version>
+	<version>1.0.0</version>
 	<name>conference-demo</name>
 	<description>Demo project for Spring Boot</description>
 
