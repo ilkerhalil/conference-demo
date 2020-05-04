@@ -1,0 +1,19 @@
+<gitVersioning>
+    
+		<branch>
+			<pattern>master</pattern>
+			<versionFormat>${version.release}</versionFormat>
+		</branch>
+		<branch>
+			<pattern>development</pattern>
+			<versionFormat>beta-${version.release}</versionFormat>
+		</branch>
+	
+	
+		<tag>
+			<pattern>.*</pattern>
+			<versionFormat>${version.release}</versionFormat>
+		</tag>
+	
+   
+</gitVersioning>

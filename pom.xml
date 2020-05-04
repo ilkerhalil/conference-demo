@@ -18,6 +18,18 @@
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
+	<profiles>
+		<profile>
+            <id>Beta</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>spring.profiles.active</name>
+					<value>Beta</value>
+				</property>
+			</activation>
+        </profile>
+	</profiles>
 
 	<dependencies>
 		<dependency>
@@ -84,29 +96,6 @@
 					<executable>false</executable>
 				</configuration>
 			</plugin>
-			<plugin>
-                <groupId>pl.project13.maven</groupId>
-                <artifactId>git-commit-id-plugin</artifactId>
-                <version>4.0.0</version>
-                <executions>
-                    <execution>
-                        <id>get-the-git-infos</id>
-                        <goals>
-                            <goal>revision</goal>
-                        </goals>
-                        <phase>initialize</phase>
-                    </execution>
-                </executions>
-                <configuration>
-                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
-                    <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
-                    <includeOnlyProperties>
-                        <includeOnlyProperty>^git.build.(time|version)$</includeOnlyProperty>
-                        <includeOnlyProperty>^git.commit.id.(abbrev|full)$</includeOnlyProperty>
-                    </includeOnlyProperties>
-                    <commitIdGenerationMode>full</commitIdGenerationMode>
-                </configuration>
-            </plugin>
 			<plugin>
 				<groupId>org.eclipse.jkube</groupId>
 				<artifactId>openshift-maven-plugin</artifactId>
