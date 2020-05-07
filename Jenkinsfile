@@ -67,6 +67,7 @@ spec:
                 when{
                    expression {
                      env.BRANCH_NAME == 'master'
+                  }
                 }
                 steps{
                   container(name:'openjdk'){
@@ -77,7 +78,8 @@ spec:
                    expression {
                      env.BRANCH_NAME == 'development'
                 }
-                steps{
+               }
+               steps{
                   container(name:'openjdk'){
                     sh 'oc login --insecure-skip-tls-verify=true -u system:openshift-master --config=/root/config https://192.168.1.225:8443 -n conference-demo-dev'
                   }
