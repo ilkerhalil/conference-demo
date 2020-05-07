@@ -80,7 +80,7 @@ spec:
             steps{
                     container(name:'openjdk') {
                       
-                      sh 'mvn versions:set -DnewVersion=$(minver) package -q'
+                      sh 'mvn versions:set -DnewVersion=$(/root/.dotnet/tools/minver) package -q'
                 }
             }
         }
