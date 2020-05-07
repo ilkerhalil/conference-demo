@@ -11,16 +11,13 @@
 	</parent>
 	<groupId>com.turcom</groupId>
 	<artifactId>conference-demo</artifactId>
-	<version>1.2.3-beta.5</version>
+	<version>1.2.3-beta.13</version>
 	<name>conference-demo</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
 		<java.version>1.8</java.version>
-		<jkube.openshift.enableAutomaticTrigger>false</jkube.openshift.enableAutomaticTrigger>
-		<app.version>${project.version}</app.version>
-
-
+		<app.version>${project.version</app.version>
 	</properties>
 	<profiles>
 		<profile>
@@ -30,6 +27,17 @@
 				<property>
 					<name>spring.profiles.active</name>
 					<value>Beta</value>
+				</property>
+
+			</activation>
+		</profile>
+		<profile>
+			<id>Prod</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>spring.profiles.active</name>
+					<value>Prod</value>
 				</property>
 			</activation>
 		</profile>

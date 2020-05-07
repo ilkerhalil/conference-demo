@@ -74,13 +74,41 @@ spec:
                   sh 'oc login --insecure-skip-tls-verify=true -u system:openshift-master --config=/root/config https://192.168.1.225:8443 -n conference-demo-dev'
                 }
               }
+            when{
+              expression {
+                     env.BRANCH_NAME == 'master'
+                }
+            }
+            steps{
+                container(name:'openjdk') {
+                  sh 'oc login --insecure-skip-tls-verify=true -u system:openshift-master --config=/root/config https://192.168.1.225:8443 -n conference-demo-prod'
+                }
+              }              
+              
+
         }
 
         stage("Create Package"){
+            when{
+              expression {
+                     env.BRANCH_NAME == 'development'
+                }
+            }
             steps{
                     container(name:'openjdk') {
                       
-                      sh 'mvn versions:set -DnewVersion=$(/root/.dotnet/tools/minver) package -q'
+                      sh 'mvn versions:set -DnewVersion=$(/root/.dotnet/tools/minver) package -P=Beta -q'
+                }
+            }
+            when{
+              expression {
+                     env.BRANCH_NAME == 'master'
+                }
+            }
+            steps{
+                    container(name:'openjdk') {
+                      
+                      sh 'mvn versions:set -DnewVersion=$(/root/.dotnet/tools/minver) package -P=Prod -q'
                 }
             }
         }
