@@ -1,6 +1,0 @@
-spec:
-  ports:
-    - name: http
-      port: 5000
-      protocol: TCP
-      targetPort: commplex-main

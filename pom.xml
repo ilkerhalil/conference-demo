@@ -11,16 +11,20 @@
 	</parent>
 	<groupId>com.turcom</groupId>
 	<artifactId>conference-demo</artifactId>
-	<version>1.2.4-beta</version>
+	<version>1.2.3-beta.5</version>
 	<name>conference-demo</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
 		<java.version>1.8</java.version>
+		<jkube.openshift.enableAutomaticTrigger>false</jkube.openshift.enableAutomaticTrigger>
+		<app.version>$app.version</app.version>
+
+
 	</properties>
 	<profiles>
 		<profile>
-            <id>Beta</id>
+			<id>Beta</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 				<property>
@@ -28,7 +32,7 @@
 					<value>Beta</value>
 				</property>
 			</activation>
-        </profile>
+		</profile>
 	</profiles>
 
 	<dependencies>
@@ -85,6 +89,11 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.8.1</version>
 		</dependency>
+		<dependency>
+			<groupId>io.dekorate</groupId>
+			<artifactId>openshift-spring-starter</artifactId>
+			<version>0.11.8</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -96,54 +105,6 @@
 					<executable>false</executable>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>io.github.efenglu.japicc</groupId>
-				<artifactId>japicc-plugin</artifactId>
-				<version>1.0.1</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>check</goal>
-						</goals>
-						<phase>verify</phase>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.jkube</groupId>
-				<artifactId>openshift-maven-plugin</artifactId>
-				<version>1.0.0-alpha-2</version>
-				<!-- <executions>
-					<execution>
-						<goals>
-							<goal>resource</goal>
-							
-							<goal>apply</goal>
-
-						</goals>
-					</execution>
-				</executions> -->
-				<configuration>
-					<generateRoute>true</generateRoute>
-					<namespace>conference-demo-dev</namespace>
-					
-					<images>
-						<image>
-							<name>nexus-docker-registry-nexus3.192.168.1.255.xip.io/vf/conference-demo:${jgitver.calculated_version}</name>
-							<build>
-								<dockerFile>${project.basedir}/Dockerfile</dockerFile>
-								<contextDir>${project.basedir}</contextDir>
-								<ports>
-									<port>5000</port>
-								</ports>
-							</build>
-						</image>
-					</images>
-
-				</configuration>
-			</plugin>
-
-
 		</plugins>
 	</build>
 
