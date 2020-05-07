@@ -55,44 +55,29 @@ spec:
       [$class: 'LocalBranch']], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'jenkins-generated-ssh-key', url: 'git@github.com:ilkerhalil/conference-demo.git']]])
           }
       }       
-        stage("Clean"){
+      stage("Clean"){
             steps{
                     container(name:'openjdk') {
                     sh 'mvn clean'
+                    sh 'cp /home/jenkins/.kube/config /root/'
                 }
             }
         }
-        stage("Oc-Login")
-        {
-                when{
-                   expression {
-                     env.BRANCH_NAME == 'master'
-                  }
-                  steps{
-                  container(name:'openjdk'){
-                    sh 'oc login --insecure-skip-tls-verify=true -u system:openshift-master --config=/root/config https://192.168.1.225:8443 -n conference-demo-prod'
-                  }
-                }
-                }
-
-               when{
-                   expression {
+        stage("oc-login"){
+            when{
+              expression {
                      env.BRANCH_NAME == 'development'
                 }
-                steps{
-                  container(name:'openjdk'){
-                    sh 'oc login --insecure-skip-tls-verify=true -u system:openshift-master --config=/root/config https://192.168.1.225:8443 -n conference-demo-dev'
-                  }
-                }
-               }
-
-                
+            }
+            steps{
+                  sh 'oc login --insecure-skip-tls-verify=true -u system:openshift-master --config=/root/config https://192.168.1.225:8443 -n conference-demo-dev'
+              }
         }
 
         stage("Create Package"){
             steps{
                     container(name:'openjdk') {
-                      sh 'cp /home/jenkins/.kube/config /root/'
+                      
                       sh 'mvn versions:set -DnewVersion=$(minver) package -q'
                 }
             }
