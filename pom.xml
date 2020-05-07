@@ -11,25 +11,25 @@
 	</parent>
 	<groupId>com.turcom</groupId>
 	<artifactId>conference-demo</artifactId>
-	<version>1.2.3-beta.13</version>
+	<version>1.2.3-beta.15</version>
 	<name>conference-demo</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
 		<java.version>1.8</java.version>
-		<app.version>${project.version</app.version>
+		
 	</properties>
 	<profiles>
 		<profile>
 			<id>Beta</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
-				<property>
-					<name>spring.profiles.active</name>
-					<value>Beta</value>
-				</property>
-
+				
 			</activation>
+			<properties>
+				<spring.profiles.active>Beta</spring.profiles.active>
+				<app.version>${project.version}</app.version>
+			</properties>
 		</profile>
 		<profile>
 			<id>Prod</id>
@@ -105,7 +105,25 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+			  <directory>src/main/resources</directory>
+			  <filtering>true</filtering>
+			</resource>
+			
+		  </resources>
+		
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<delimiters>
+						<delimiter>@</delimiter>
+					</delimiters>
+					<useDefaultDelimiters>false</useDefaultDelimiters>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

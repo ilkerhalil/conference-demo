@@ -11,7 +11,7 @@ import java.util.Map;
 @RestController
 public class HomeController {
 
-    @Value("${app.version}")
+    @Value("app.version")
     private String appVersion;
 
     @GetMapping
