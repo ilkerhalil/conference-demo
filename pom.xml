@@ -18,7 +18,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<jkube.openshift.enableAutomaticTrigger>false</jkube.openshift.enableAutomaticTrigger>
-		<app.version>$app.version</app.version>
+		<app.version>${project.version}</app.version>
 
 
 	</properties>
