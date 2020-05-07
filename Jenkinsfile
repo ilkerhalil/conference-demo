@@ -94,21 +94,14 @@ spec:
             }
         }
 
-        stage("Build"){
+        stage("Build & Deploy"){
             steps{
                     container(name:'openjdk') {
-                      sh 'mvn -Ddekorate.build=true'                      
+                      sh 'mvn package  -Ddekorate.build=true -Ddekorate.deploy=true -Dmaven.test.skip=true'                      
                 }
             }
         }
-        stage("Deploy"){
-            steps{
-                    container(name:'openjdk') {
-                      sh 'mvn -Ddekorate.deploy=true'
-                      
-                }
-            }
-        }
+        
 
     }
     
