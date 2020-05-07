@@ -14,7 +14,7 @@ spec:
     fsGroup: 0
   containers:
   - name: openjdk
-    image: nexus-docker-registry-nexus3.192.168.1.255.xip.io/vf/maven-oc-build
+    image: nexus-docker-registry-nexus3.192.168.1.255.xip.io/docker/maven-oc-build
     command:
     - cat
     tty: true
