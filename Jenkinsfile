@@ -63,32 +63,9 @@ spec:
                 }
             }
         }
-        stage("oc-login"){
-            when{
-              expression {
-                     env.BRANCH_NAME == 'development'
-                }
-            }
-            steps{
-                container(name:'openjdk') {
-                  sh 'oc login --insecure-skip-tls-verify=true -u system:openshift-master --config=/root/config https://192.168.1.225:8443 -n conference-demo-dev'
-                }
-              }
-            when{
-              expression {
-                     env.BRANCH_NAME == 'master'
-                }
-            }
-            steps{
-                container(name:'openjdk') {
-                  sh 'oc login --insecure-skip-tls-verify=true -u system:openshift-master --config=/root/config https://192.168.1.225:8443 -n conference-demo-prod'
-                }
-              }              
-              
+        
 
-        }
-
-        stage("Create Package"){
+        stage("Create Beta Package"){
             when{
               expression {
                      env.BRANCH_NAME == 'development'
@@ -96,10 +73,14 @@ spec:
             }
             steps{
                     container(name:'openjdk') {
-                      
+                      sh 'oc login --insecure-skip-tls-verify=true -u system:openshift-master --config=/root/config https://192.168.1.225:8443 -n conference-demo-dev'                
                       sh 'mvn versions:set -DnewVersion=$(/root/.dotnet/tools/minver) package -P=Beta -q'
                 }
             }
+
+        }
+        
+        stage("Create Prod Package"){
             when{
               expression {
                      env.BRANCH_NAME == 'master'
@@ -107,11 +88,12 @@ spec:
             }
             steps{
                     container(name:'openjdk') {
-                      
+                      sh 'oc login --insecure-skip-tls-verify=true -u system:openshift-master --config=/root/config https://192.168.1.225:8443 -n conference-demo-prod'
                       sh 'mvn versions:set -DnewVersion=$(/root/.dotnet/tools/minver) package -P=Prod -q'
                 }
             }
         }
+
         stage("Build"){
             steps{
                     container(name:'openjdk') {
