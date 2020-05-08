@@ -65,7 +65,7 @@ spec:
         }
         
 
-        stage("Create Beta Package"){
+        stage("Login Beta"){
             when{
               expression {
                      env.BRANCH_NAME == 'development'
@@ -80,7 +80,7 @@ spec:
 
         }
         
-        stage("Create Prod Package"){
+        stage("Login Prod"){
             when{
               expression {
                      env.BRANCH_NAME == 'master'
@@ -97,7 +97,7 @@ spec:
         stage("Build & Deploy"){
             steps{
                     container(name:'openjdk') {
-                      sh 'mvnc clean package versions:set -DnewVersion=$(/root/.dotnet/tools/minver)  -Ddekorate.build=true -Ddekorate.deploy=true -Dmaven.test.skip=true -q'                      
+                      sh 'mvn clean package versions:set -DnewVersion=$(/root/.dotnet/tools/minver)  -Ddekorate.build=true -Ddekorate.deploy=true -Dmaven.test.skip=true -q'                      
                 }
             }
         }
