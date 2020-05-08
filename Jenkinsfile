@@ -97,7 +97,7 @@ spec:
         stage("Build & Deploy"){
             steps{
                     container(name:'openjdk') {
-                      sh 'mvn package versions:set -DnewVersion=$(/root/.dotnet/tools/minver)  -Ddekorate.build=true -Ddekorate.deploy=true -Dmaven.test.skip=true -q'                      
+                      sh 'mvnc clean package versions:set -DnewVersion=$(/root/.dotnet/tools/minver)  -Ddekorate.build=true -Ddekorate.deploy=true -Dmaven.test.skip=true -q'                      
                 }
             }
         }
