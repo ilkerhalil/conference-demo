@@ -97,7 +97,7 @@ spec:
         stage("Build & Deploy"){
             steps{
                     container(name:'openjdk') {
-                      sh 'mvn package  -Ddekorate.build=true -Ddekorate.deploy=true -Dmaven.test.skip=true'                      
+                      sh 'mvn clean install  -Ddekorate.build=true -Ddekorate.deploy=true -Dmaven.test.skip=true'                      
                 }
             }
         }
