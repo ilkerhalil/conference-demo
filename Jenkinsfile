@@ -73,8 +73,9 @@ spec:
             }
             steps{
                     container(name:'openjdk') {
+                      sh 'cp /home/jenkins/.kube/config /root/'
                       sh 'oc login --insecure-skip-tls-verify=true -u system:openshift-master --config=/root/config https://192.168.1.225:8443 -n conference-demo-dev'                
-                      sh 'mvn versions:set -DnewVersion=$(/root/.dotnet/tools/minver) package -P=Beta -q'
+                      sh 'mvn versions:set -DnewVersion=$(/root/.dotnet/tools/minver) package -q'
                 }
             }
 
@@ -88,6 +89,7 @@ spec:
             }
             steps{
                     container(name:'openjdk') {
+                      sh 'cp /home/jenkins/.kube/config /root/'
                       sh 'oc login --insecure-skip-tls-verify=true -u system:openshift-master --config=/root/config https://192.168.1.225:8443 -n conference-demo-prod'
                       sh 'mvn versions:set -DnewVersion=$(/root/.dotnet/tools/minver) package -P=Prod -q'
                 }
@@ -97,7 +99,7 @@ spec:
         stage("Build & Deploy"){
             steps{
                     container(name:'openjdk') {
-                      sh 'mvn clean install  -Ddekorate.build=true -Ddekorate.deploy=true -Dmaven.test.skip=true'                      
+                      sh 'mvn clean versions:set -DnewVersion=$(/root/.dotnet/tools/minver) package  -Ddekorate.build=true -Ddekorate.deploy=true -Dmaven.test.skip=true -q'                      
                 }
             }
         }
