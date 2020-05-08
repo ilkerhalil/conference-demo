@@ -58,7 +58,7 @@ spec:
       stage("Clean"){
             steps{
                     container(name:'openjdk') {
-                    sh 'mvn clean'
+                    sh 'mvn clean compile -q'
                     sh 'cp /home/jenkins/.kube/config /root/'
                 }
             }
@@ -73,9 +73,8 @@ spec:
             }
             steps{
                     container(name:'openjdk') {
-                      sh 'cp /home/jenkins/.kube/config /root/'
                       sh 'oc login --insecure-skip-tls-verify=true -u system:openshift-master --config=/root/config https://192.168.1.225:8443 -n conference-demo-dev'                
-                      sh 'mvn versions:set -DnewVersion=$(/root/.dotnet/tools/minver) package -q'
+                      sh 'mvn versions:set -DnewVersion=$(/root/.dotnet/tools/minver) package P=Beta  -q'
                 }
             }
 
@@ -89,7 +88,6 @@ spec:
             }
             steps{
                     container(name:'openjdk') {
-                      sh 'cp /home/jenkins/.kube/config /root/'
                       sh 'oc login --insecure-skip-tls-verify=true -u system:openshift-master --config=/root/config https://192.168.1.225:8443 -n conference-demo-prod'
                       sh 'mvn versions:set -DnewVersion=$(/root/.dotnet/tools/minver) package -P=Prod -q'
                 }
