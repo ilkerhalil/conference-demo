@@ -29,6 +29,7 @@
 			<properties>
 				<spring.profiles.active>Beta</spring.profiles.active>
 				<app.version>${project.version}</app.version>
+				<openshiftNamespace>conference-demo-dev</openshiftNamespace>
 			</properties>
 		</profile>
 		<profile>
