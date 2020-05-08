@@ -8,7 +8,7 @@ pipeline{
 apiVersion: v1
 kind: Pod
 metadata:
-  namespace: jenkins
+  namespace: conference-demo-dev
 spec:
   securityContext:
     fsGroup: 0
