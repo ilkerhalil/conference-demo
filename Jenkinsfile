@@ -58,7 +58,7 @@ spec:
       stage("Clean"){
             steps{
                     container(name:'openjdk') {
-                    sh 'mvn clean compile -q'
+                    //sh 'mvn clean compile -q'
                     sh 'cp /home/jenkins/.kube/config /root/'
                 }
             }
@@ -97,7 +97,7 @@ spec:
         stage("Build & Deploy"){
             steps{
                     container(name:'openjdk') {
-                      sh 'mvn versions:set -DnewVersion=$(/root/.dotnet/tools/minver) package  -Ddekorate.build=true -Ddekorate.deploy=true -Dmaven.test.skip=true -P=beta -q'                      
+                      sh 'mvn clean versions:set -DnewVersion=$(/root/.dotnet/tools/minver) package  -Ddekorate.build=true -Ddekorate.deploy=true -Dmaven.test.skip=true -P=beta -q'                      
                 }
             }
         }
