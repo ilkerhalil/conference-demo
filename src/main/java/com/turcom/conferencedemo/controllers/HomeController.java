@@ -16,15 +16,14 @@ public class HomeController {
     @Value("${app.version}")
     private String appVersion;
 
-    @Value("${DB_HOST}")
-    private String DbHost;
+	private Object put;
+
 
     @GetMapping
     @RequestMapping("/")
     public Map getStatus(){
-        Logger.info("DB HOST " +DbHost );
-        Map map = new HashMap<String,String>();
-        map.put("app-version",appVersion);
+        final Map map = new HashMap<String, String>();
+        put = map.put("app-version",appVersion);
         return map;
     }
 }

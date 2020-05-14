@@ -11,30 +11,34 @@
 	</parent>
 	<groupId>com.turcom</groupId>
 	<artifactId>conference-demo</artifactId>
-	<version>1.2.3-beta.15</version>
+	<version>1.2.3-beta.29</version>
 	<name>conference-demo</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
 		<java.version>1.8</java.version>
-		
+		<spring.profiles.active>beta</spring.profiles.active>
+		<app.version>${project.version}</app.version>
+
 	</properties>
 	<profiles>
 		<profile>
-			<id>Beta</id>
-			<properties>
-				<spring.profiles.active>beta</spring.profiles.active>
-				<app.version>${project.version}</app.version>
-				<openshiftNamespace>conference-demo-dev</openshiftNamespace>
-			</properties>
-		</profile>
-		<profile>
-			<id>Prod</id>
+			<id>beta</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 				<property>
 					<name>spring.profiles.active</name>
-					<value>Prod</value>
+					<value>beta</value>
+				</property>
+			</activation>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>spring.profiles.active</name>
+					<value>prod</value>
 				</property>
 			</activation>
 		</profile>
@@ -97,19 +101,19 @@
 		<dependency>
 			<groupId>io.dekorate</groupId>
 			<artifactId>openshift-spring-starter</artifactId>
-			<version>0.11.8</version>
+			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
 
 	<build>
 		<resources>
 			<resource>
-			  <directory>src/main/resources</directory>
-			  <filtering>true</filtering>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
 			</resource>
-			
-		  </resources>
-		
+
+		</resources>
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
