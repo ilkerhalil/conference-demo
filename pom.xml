@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.turcom</groupId>
 	<artifactId>conference-demo</artifactId>
-	<version>1.2.1-beta.0.120</version>
+	<version>1.2.1-beta.0.121</version>
 	<name>conference-demo</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -31,6 +31,9 @@
 					<value>beta</value>
 				</property>
 			</activation>
+			<properties>
+				<app.version>${project.version}</app.version>
+			</properties>
 		</profile>
 		<profile>
 			<id>prod</id>
@@ -118,6 +121,7 @@
 	</dependencies>
 
 	<build>
+
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
