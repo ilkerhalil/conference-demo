@@ -11,15 +11,14 @@
 	</parent>
 	<groupId>com.turcom</groupId>
 	<artifactId>conference-demo</artifactId>
-	<version>1.2.1-beta.0.121</version>
+	<version>1.2.1-beta.0.122</version>
 	<name>conference-demo</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
 		<java.version>1.8</java.version>
-		<spring.profiles.active>beta</spring.profiles.active>
+		<spring.profiles.active>${spring.profiles.active}</spring.profiles.active>
 		<app.version>${project.version}</app.version>
-
 	</properties>
 	<profiles>
 		<profile>
@@ -33,6 +32,7 @@
 			</activation>
 			<properties>
 				<app.version>${project.version}</app.version>
+				<spring.profiles.active>beta</spring.profiles.active>
 			</properties>
 		</profile>
 		<profile>
@@ -44,6 +44,10 @@
 					<value>prod</value>
 				</property>
 			</activation>
+			<properties>
+				<app.version>${project.version}</app.version>
+				<spring.profiles.active>prod</spring.profiles.active>
+			</properties>
 		</profile>
 	</profiles>
 
@@ -106,18 +110,6 @@
 			<artifactId>openshift-spring-starter</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>io.dekorate</groupId>
-			<artifactId>docker-annotations</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>io.dekorate</groupId>
-			<artifactId>jib-annotations</artifactId>
-			<version>1.0.0</version>
-		</dependency> -->
-
-
 	</dependencies>
 
 	<build>
