@@ -11,24 +11,37 @@
 	</parent>
 	<groupId>com.turcom</groupId>
 	<artifactId>conference-demo</artifactId>
-	<version>1.0.0</version>
+	<version>1.2.3-beta.36</version>
 	<name>conference-demo</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
 		<java.version>1.8</java.version>
+		<spring.profiles.active>beta</spring.profiles.active>
+		<app.version>${project.version}</app.version>
+
 	</properties>
 	<profiles>
 		<profile>
-            <id>Beta</id>
+			<id>beta</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 				<property>
 					<name>spring.profiles.active</name>
-					<value>Beta</value>
+					<value>beta</value>
 				</property>
 			</activation>
-        </profile>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>spring.profiles.active</name>
+					<value>prod</value>
+				</property>
+			</activation>
+		</profile>
 	</profiles>
 
 	<dependencies>
@@ -85,10 +98,45 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.8.1</version>
 		</dependency>
+		<dependency>
+			<groupId>io.dekorate</groupId>
+			<artifactId>openshift-spring-starter</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<!-- <dependency>
+			<groupId>io.dekorate</groupId>
+			<artifactId>docker-annotations</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.dekorate</groupId>
+			<artifactId>jib-annotations</artifactId>
+			<version>1.0.0</version>
+		</dependency> -->
+
+
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+
+		</resources>
+
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<delimiters>
+						<delimiter>@</delimiter>
+					</delimiters>
+					<useDefaultDelimiters>false</useDefaultDelimiters>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -96,42 +144,6 @@
 					<executable>false</executable>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<groupId>org.eclipse.jkube</groupId>
-				<artifactId>openshift-maven-plugin</artifactId>
-				<version>1.0.0-alpha-2</version>
-				<!-- <executions>
-					<execution>
-						<goals>
-							<goal>resource</goal>
-							
-							<goal>apply</goal>
-
-						</goals>
-					</execution>
-				</executions> -->
-				<configuration>
-					<generateRoute>true</generateRoute>
-					<namespace>conference-demo-dev</namespace>
-					
-					<images>
-						<image>
-							<name>nexus-docker-registry-nexus3.192.168.1.255.xip.io/vf/conference-demo:${jgitver.calculated_version}</name>
-							<build>
-								<dockerFile>${project.basedir}/Dockerfile</dockerFile>
-								<contextDir>${project.basedir}</contextDir>
-								<ports>
-									<port>5000</port>
-								</ports>
-							</build>
-						</image>
-					</images>
-
-				</configuration>
-			</plugin>
-
-
 		</plugins>
 	</build>
 

@@ -102,7 +102,9 @@ spec:
             }
             steps{
                     container(name:'openjdk') {
-                      sh 'mvn clean versions:set -DnewVersion=$(/root/.dotnet/tools/minver -d beta) install package  -Ddekorate.build=true -Ddekorate.deploy=true -Dmaven.test.skip=true -P=beta -q'                      
+                      sh 'mvn clean'
+                      sh 'mvn versions:set -DnewVersion=$(/root/.dotnet/tools/minver -d beta)'
+                      sh 'mvn package -Ddekorate.build=true -Ddekorate.deploy=true -Dmaven.test.skip=true -P=beta -q'                      
                 }
             }
         }
