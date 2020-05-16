@@ -1,5 +1,5 @@
 env.label = "ci-pod-${UUID.randomUUID().toString()}"
-
+namespace = env.BRANCH_NAME == 'development'?'conference-demo-dev':'conference-demo'
 pipeline{
     agent{
         kubernetes{
@@ -8,7 +8,7 @@ pipeline{
 apiVersion: v1
 kind: Pod
 metadata:
-  namespace: conference-demo-dev
+  namespace: """namespace"""
 spec:
   securityContext:
     fsGroup: 0

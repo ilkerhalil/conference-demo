@@ -21,6 +21,13 @@
                 <TimeBasedTriggeringPolicy />
             </Policies>
         </RollingFile>
+        <Elasticsearch name="elasticsearchAsyncBatch">
+            <IndexName indexName="log4j2" />
+            <AsyncBatchDelivery>
+                <IndexTemplate name="log4j2" path="classpath:indexTemplate.json" />
+                <JestHttp serverUris="http://elasticsearch-master-elasticsearch.192.168.1.255.xip.io/" />
+            </AsyncBatchDelivery>
+        </Elasticsearch>
     </Appenders>
 
     <Loggers>
@@ -28,6 +35,7 @@
         <Root level="info">
             <AppenderRef ref="Console" />
             <AppenderRef ref="RollingFile" />
+            <AppenderRef ref="elasticsearchAsyncBatch" />
         </Root>
 
         <!-- LOG "com.baeldung*" at TRACE level -->

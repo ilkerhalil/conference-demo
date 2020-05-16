@@ -110,6 +110,16 @@
 			<artifactId>openshift-spring-starter</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		<!-- <dependency>
+			<groupId>org.logback-extensions</groupId>
+			<artifactId>logback-ext-loggly</artifactId>
+			<version>0.1.5</version>
+		</dependency> -->
+		<dependency>
+			<groupId>org.appenders.log4j</groupId>
+			<artifactId>log4j2-elasticsearch-jest</artifactId>
+			<version>1.4.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>

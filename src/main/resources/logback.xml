@@ -1,0 +1,9 @@
+<configuration>
+    <appender name="ES" class="ch.qos.logback.ext.loggly.LogglyAppender">
+        <endpointUrl>http://elasticsearch-master-elasticsearch.192.168.1.255.xip.io/tests/test?pipeline=logback</endpointUrl>
+        <pattern>%m</pattern>
+    </appender>
+    <logger name="es" level="INFO" additivity="false">
+        <appender-ref ref="ES"/>
+    </logger>
+</configuration>
