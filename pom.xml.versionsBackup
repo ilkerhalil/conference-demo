@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.turcom</groupId>
 	<artifactId>conference-demo</artifactId>
-	<version>1.2.1-beta.0.125</version>
+	<version>1.2.1-beta.0.122</version>
 	<name>conference-demo</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -21,23 +21,6 @@
 		<app.version>${project.version}</app.version>
 	</properties>
 	<profiles>
-		<profile>
-			<id>dev</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-				<property>
-					<name>spring.profiles.active</name>
-					<value>dev</value>
-				</property>
-			</activation>
-			<properties>
-				<app.version>${project.version}</app.version>
-				<spring.profiles.active>dev</spring.profiles.active>
-				<elasticapm.url>http://apm-server-apm-server-elasticsearch.192.168.1.255.xip.io</elasticapm.url>
-				<elasticsearch.url>http://elasticsearch-master-elasticsearch.192.168.1.255.xip.io</elasticsearch.url>
-				<elasticsearch.indexName>conference-app-dev</elasticsearch.indexName>
-			</properties>
-		</profile>
 		<profile>
 			<id>beta</id>
 			<activation>
@@ -50,9 +33,6 @@
 			<properties>
 				<app.version>${project.version}</app.version>
 				<spring.profiles.active>beta</spring.profiles.active>
-				<elasticapm.url>http://apm-server-apm-server.elasticsearch.svc:8200</elasticapm.url>
-				<elasticsearch.url>http://elasticsearch-master.elasticsearch.svc:9200</elasticsearch.url>
-				<elasticsearch.indexName>conference-app-beta</elasticsearch.indexName>
 			</properties>
 		</profile>
 		<profile>
@@ -67,9 +47,6 @@
 			<properties>
 				<app.version>${project.version}</app.version>
 				<spring.profiles.active>prod</spring.profiles.active>
-				<elasticapm.url>http://apm-server-apm-server.elasticsearch.svc:8200</elasticapm.url>
-				<elasticsearch.url>http://elasticsearch-master.elasticsearch.svc:9200</elasticsearch.url>
-				<elasticsearch.indexName>conference-app-prod</elasticsearch.indexName>
 			</properties>
 		</profile>
 	</profiles>
@@ -158,7 +135,7 @@
 			<groupId>co.elastic.apm</groupId>
 			<artifactId>apm-agent-attach</artifactId>
 			<version>1.16.0</version>
-		</dependency>
+		  </dependency>
 	</dependencies>
 
 	<build>
@@ -175,12 +152,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
-				
 				<configuration>
 					<delimiters>
 						<delimiter>@</delimiter>
 					</delimiters>
-					
 					<useDefaultDelimiters>false</useDefaultDelimiters>
 				</configuration>
 			</plugin>

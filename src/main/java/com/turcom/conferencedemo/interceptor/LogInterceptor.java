@@ -1,6 +1,8 @@
 package com.turcom.conferencedemo.interceptor;
 
 import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,11 +19,13 @@ import java.util.Calendar;
  */
 @Component
 public class LogInterceptor extends HandlerInterceptorAdapter {
-    private final org.slf4j.Logger Logger = LoggerFactory.getLogger(this.getClass());
+    
+    private final  Logger Logger = LogManager.getLogger("elasticsearch"); ;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception
     {
 
+        
         Logger.info("\n\n\n----------------LogInterceptor PreHandle (Start)--------------------------");
         Logger.info(request.getRemoteAddr()
                 +" accessed resource "+request.getRequestURI()+" @ "+getCurrentTime());

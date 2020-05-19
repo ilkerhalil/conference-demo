@@ -1,49 +1,11 @@
 env.label = "ci-pod-${UUID.randomUUID().toString()}"
-namespace = env.BRANCH_NAME == 'development'?'conference-demo-dev':'conference-demo'
+podTemplate = env.BRANCH_NAME == 'development'?'build-pod-template/development.yaml':'build-pod-template/master.yaml'
 pipeline{
     agent{
         kubernetes{
         label "${env.label}"
-           yaml """
-apiVersion: v1
-kind: Pod
-metadata:
-  namespace: conference-demo-dev
-spec:
-  securityContext:
-    fsGroup: 0
-  containers:
-  - name: openjdk
-    image: nexus-docker-registry-nexus3.192.168.1.255.xip.io/docker/maven-oc-build
-    command:
-    - cat
-    tty: true
-    env:
-    - name: HOME
-      value: /home/jenkins
-    - name: MAVEN_OPTS
-      value: -Duser.home=/home/jenkins
-    - name: OPENSHIFT_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          key: password
-          name: openshift-login
-    volumeMounts:
-    - name: kubeconfig
-      mountPath: "/home/jenkins/.kube"
-    - mountPath: /home/jenkins
-      name: cache-volume
-  imagePullSecrets:
-  - name: nexus
-  volumes:
-  - name: kubeconfig
-    secret:
-      secretName: kube-config
-  - name: cache-volume
-    emptyDir: {}
-          """
+           yaml podTemplate
         }
-
     }
     stages{
       stage("Checkout"){
