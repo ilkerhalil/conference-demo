@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  namespace: conference-demo
+  namespace: conference-demo-prod
 spec:
   securityContext:
     fsGroup: 0
