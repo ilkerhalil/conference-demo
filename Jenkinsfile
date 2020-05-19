@@ -4,7 +4,7 @@ pipeline{
     agent{
         kubernetes{
         label "${env.label}"
-           yamlFile podTemplate
+           yamlFile "${podTemplate}"
         }
 
     }
