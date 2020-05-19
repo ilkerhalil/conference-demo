@@ -4,7 +4,7 @@ pipeline{
     agent{
         kubernetes{
         label "${env.label}"
-           yaml podTemplate
+           yaml 'build-pod-template/development.yaml'
         }
     }
     stages{
