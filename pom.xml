@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.turcom</groupId>
 	<artifactId>conference-demo</artifactId>
-	<version>1.2.1-beta.0.133</version>
+	<version>1.2.1-beta.0.136</version>
 	<name>conference-demo</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -133,20 +133,15 @@
 			<artifactId>openshift-spring-starter</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.logback-extensions</groupId>
-			<artifactId>logback-ext-loggly</artifactId>
-			<version>0.1.5</version>
-		</dependency> -->
 		<dependency>
 			<groupId>org.appenders.log4j</groupId>
 			<artifactId>log4j2-elasticsearch-hc</artifactId>
-			<version>1.4.1</version>
+			<version>1.4.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.lmax</groupId>
 			<artifactId>disruptor</artifactId>
-			<version>3.3.6</version>
+			<version>3.4.2</version>
 		</dependency>
 
 		<dependency>
