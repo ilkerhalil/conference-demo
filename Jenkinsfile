@@ -5,8 +5,9 @@ pipeline{
         kubernetes{
         label "${env.label}"
            yamlFile "${podTemplate}"
-        },
-        slaveConnectTimeout: 1000
+           idleMinutes 30
+        }
+        
 
     }
     stages{
