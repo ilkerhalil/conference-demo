@@ -65,8 +65,8 @@ pipeline{
             }
             steps{
                     container(name:'openjdk') {
-                      sh 'mvn clean'
-                      sh 'mvn versions:set -DnewVersion=$(/root/.dotnet/tools/minver -d beta)'
+                      sh 'mvn clean -q'
+                      sh 'mvn versions:set -DnewVersion=$(/root/.dotnet/tools/minver -d beta) -q'
                       sh 'mvn package -Ddekorate.build=true -Ddekorate.deploy=true -Dmaven.test.skip=true -P=beta -q'                      
                 }
             }
