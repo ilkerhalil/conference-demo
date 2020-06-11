@@ -1,5 +1,5 @@
 env.label = "ci-pod-${UUID.randomUUID().toString()}"
-env.podTemplate = (env.BRANCH_NAME == 'development'?'build-pod-template/development.yaml':'build-pod-template/master.yaml')
+env.podTemplate = (env.BRANCH_NAME == 'master'?'build-pod-template/master.yaml':'build-pod-template/development.yaml')
 pipeline{
     agent{
         kubernetes{

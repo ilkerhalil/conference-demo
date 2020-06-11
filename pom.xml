@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.turcom</groupId>
 	<artifactId>conference-demo</artifactId>
-	<version>1.2.1-beta.0.137</version>
+	<version>1.2.1-beta.0.139</version>
 	<name>conference-demo</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -128,11 +128,21 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.8.1</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>io.dekorate</groupId>
 			<artifactId>openshift-spring-starter</artifactId>
 			<version>1.0.0</version>
-		</dependency>
+		</dependency> -->
+		<!-- <dependency>
+			<groupId>org.eclipse.jkube</groupId>
+			<artifactId>jkube-kit-build-api</artifactId>
+			<version>1.0.0-alpha-3</version>
+		  </dependency> -->
+		  <dependency>
+			<groupId>org.eclipse.jkube</groupId>
+			<artifactId>jkube-kit-build-api</artifactId>
+			<version>1.0.0-alpha-3</version>
+		  </dependency>
 		<dependency>
 			<groupId>org.appenders.log4j</groupId>
 			<artifactId>log4j2-elasticsearch-hc</artifactId>
@@ -186,6 +196,28 @@
 					<executable>false</executable>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.eclipse.jkube</groupId>
+				<artifactId>openshift-maven-plugin</artifactId>
+				<version>1.0.0-alpha-3</version>
+				<executions>
+				  <execution>
+					<id>resources</id>
+					<phase>process-resources</phase>
+					<goals>
+					  <goal>resource</goal>
+					</goals>
+				  </execution>
+				  <execution>
+					<id>build</id>
+					<phase>package</phase>
+					<goals>
+					  <goal>build</goal>
+					</goals>
+				  </execution>
+				</executions>
+
+			  </plugin>
 		</plugins>
 	</build>
 
